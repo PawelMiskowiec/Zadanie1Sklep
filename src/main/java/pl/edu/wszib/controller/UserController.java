@@ -21,9 +21,11 @@ public class UserController {
         this.productView = productView;
     }
 
-    public boolean authenticate(){
+    public void LogIn(){
         DB.getInstance().logIn();
-        return DB.getInstance().isAnyUserLoggedIn();
+    }
+    public boolean isAnyoneLoggedIn(){
+        return DB.getInstance().checkUsersLoginStatus();
     }
     public void logOut(){
         DB.getInstance().logOut();
@@ -35,7 +37,6 @@ public class UserController {
                 user.getCart().addProduct(productID, quantity);
             }
         }
-
     }
 
     public void getProductView() {

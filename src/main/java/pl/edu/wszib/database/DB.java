@@ -29,7 +29,7 @@ public class DB {
         users.add(new User("roman", DigestUtils.md5Hex("roman")));
     }
 
-    public boolean isAnyUserLoggedIn(){
+    public boolean checkUsersLoginStatus(){
         for(User user: this.users){
             if(user.isLoginStatus()){
                 return true;

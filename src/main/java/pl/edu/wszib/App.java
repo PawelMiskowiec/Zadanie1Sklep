@@ -23,7 +23,8 @@ public class App {
                 new UserController(users, products, productView);
         BufferedReader br =
                 new BufferedReader(new InputStreamReader(System.in));
-        Boolean isAnyoneLoggedIn= userController.authenticate();
+        userController.LogIn();
+        Boolean isAnyoneLoggedIn= userController.isAnyoneLoggedIn();
 
         while(isAnyoneLoggedIn){
             System.out.println("\nWybierz dzialanie");
@@ -52,7 +53,8 @@ public class App {
                         break;
                     case("5"):
                         userController.logOut();
-                        isAnyoneLoggedIn= userController.authenticate();
+                        userController.LogIn();
+                        isAnyoneLoggedIn= userController.isAnyoneLoggedIn();
                         break;
                     default:
                         System.out.println("\nWybierz numer z listy\n");
