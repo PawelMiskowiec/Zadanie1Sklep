@@ -22,7 +22,11 @@ public class UserController {
     }
 
     public boolean authenticate(){
-        return DB.getInstance().signIn();
+        DB.getInstance().logIn();
+        return DB.getInstance().isAnyUserLoggedIn();
+    }
+    public void logOut(){
+        DB.getInstance().logOut();
     }
 
     public void addProductToCart(int productID, int quantity){
@@ -35,18 +39,13 @@ public class UserController {
     }
 
     public void getProductView() {
-        for(Product product: DB.getInstance().getProducts()){
-            this.productView.printProducts(product.getId(), product.getName(), product.getPrice(), product.getQuantity());
-        }
+        this.productView.printProducts(this.products);
     }
 
     public void getCartView(){
         for(User user: users){
-            if(user.isLoginStatus()){
-                for(Product product: user.getCart().getProducts()){
-                    CartView.printCart(product);
-                }
-            }
+            if(user.isLoginStatus())
+                CartView.printCart(user.getCart().getProducts());
         }
     }
     public void processOrder(){

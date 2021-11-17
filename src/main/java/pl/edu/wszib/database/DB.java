@@ -28,7 +28,25 @@ public class DB {
         users.add(new User("admin", DigestUtils.md5Hex("admin")));
         users.add(new User("roman", DigestUtils.md5Hex("roman")));
     }
-    public boolean signIn(){
+
+    public boolean isAnyUserLoggedIn(){
+        for(User user: this.users){
+            if(user.isLoginStatus()){
+                return true;
+            }
+        }
+        return false;
+    }
+    public void logOut(){
+        for(User user: this.users){
+            if(user.isLoginStatus()){
+                user.setLoginStatus(false);
+                System.out.println("Wylogowano pomyślnie");
+            }
+        }
+    }
+
+    public void logIn(){
         try {
             for(int i=0; i<3; i++){
                 System.out.print("podaj login:");
@@ -38,14 +56,13 @@ public class DB {
                 for (User user : this.users) {
                     if (user.getLogin().equals(login) && user.getPassword().equals(DigestUtils.md5Hex(password))) {
                         user.setLoginStatus(true);
-                        return true;
+                        return;
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
     }
 
     public List<Product> getProducts() {

@@ -21,16 +21,15 @@ public class Cart {
                             productInCart.setQuantity(productInCart.getQuantity() + quantity);
                             return;
                         } else{
-                            System.out.println("Podano nieprawidłową ilość");
+                            System.out.println("\nPodano nieprawidłową ilość\n");
                             return;
                         }
                     }
                 }
-                if(product.getQuantity() >= quantity && quantity > 0){
+                if(product.getQuantity() >= quantity && quantity > 0)
                     this.products.add(new Product(product.getName(), product.getPrice(), quantity, product.getId()));
-                } else{
-                    System.out.println("Podano nieprawidłową ilość");
-                }
+                else
+                    System.out.println("\nPodano nieprawidłową ilość\n");
                 return;
             }
         }

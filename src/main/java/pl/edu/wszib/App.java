@@ -26,12 +26,12 @@ public class App {
         Boolean isAnyoneLoggedIn= userController.authenticate();
 
         while(isAnyoneLoggedIn){
-            System.out.println("Wybierz dzialanie");
+            System.out.println("\nWybierz dzialanie");
             System.out.println("1.Wyswietl produkty");
             System.out.println("2.Dodaj do koszyka");
             System.out.println("3.Wyswietl zawartosc koszyka");
             System.out.println("4.Złóż zamowienie");
-            System.out.println("5.Wyloguj sie");
+            System.out.println("5.Wyloguj sie\n");
             try {
                 switch(br.readLine()){
                     case("1"):
@@ -51,6 +51,7 @@ public class App {
                         userController.processOrder();
                         break;
                     case("5"):
+                        userController.logOut();
                         isAnyoneLoggedIn= userController.authenticate();
                         break;
                     default:
