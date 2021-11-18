@@ -12,13 +12,13 @@ public class Cart {
         this.products = new ArrayList<>();
     }
 
-    public void addProduct(int productID, int quantity){
-        for(Product product: DB.getInstance().getProducts()){
-            if(product.getId() == productID){
+    public void addProduct(int addedProductID, int requestedQuantity){
+        for(Product productFromDB: DB.getInstance().getProducts()){
+            if(addedProductID == productFromDB.getId()){
                 for(Product productInCart: products){
-                    if(productInCart.getId() == productID){
-                        if(product.getQuantity() >= quantity + productInCart.getQuantity() && quantity > 0){
-                            productInCart.setQuantity(productInCart.getQuantity() + quantity);
+                    if(productInCart.getId() == addedProductID){
+                        if(productFromDB.getQuantity() >= requestedQuantity + productInCart.getQuantity() && requestedQuantity > 0){
+                            productInCart.setQuantity(productInCart.getQuantity() + requestedQuantity);
                             return;
                         } else{
                             System.out.println("\nPodano nieprawidłową ilość\n");
@@ -26,8 +26,9 @@ public class Cart {
                         }
                     }
                 }
-                if(product.getQuantity() >= quantity && quantity > 0)
-                    this.products.add(new Product(product.getName(), product.getPrice(), quantity, product.getId()));
+                if(productFromDB.getQuantity() >= requestedQuantity && requestedQuantity > 0)
+                    this.products.add(new Product(productFromDB.getName(), productFromDB.getPrice(),
+                            requestedQuantity, productFromDB.getId()));
                 else
                     System.out.println("\nPodano nieprawidłową ilość\n");
                 return;

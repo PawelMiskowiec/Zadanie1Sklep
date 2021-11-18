@@ -24,9 +24,11 @@ public class UserController {
     public void LogIn(){
         DB.getInstance().logIn();
     }
+
     public boolean isAnyoneLoggedIn(){
         return DB.getInstance().checkUsersLoginStatus();
     }
+
     public void logOut(){
         DB.getInstance().logOut();
     }

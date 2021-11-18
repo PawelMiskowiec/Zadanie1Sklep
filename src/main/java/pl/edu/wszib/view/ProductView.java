@@ -8,6 +8,7 @@ public class ProductView {
     public void printProducts(List<Product> productsList){
         System.out.println("Lista dostepnych produktów:");
         for(Product product: productsList){
+            if(product.getQuantity()>0){}
             System.out.print(product.getId() + ". ");
             System.out.print(product.getName());
             System.out.print(" cena:" + product.getPrice());
